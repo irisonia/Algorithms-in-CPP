@@ -1,4 +1,4 @@
-# Basic-algorithms-in-C-CPP
+# Dijkstra README
 
 - Compile with std=c++11.
 - The algorithm prints the shortest path in a directed, weighted graph of cities.
