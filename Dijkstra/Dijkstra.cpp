@@ -141,8 +141,6 @@ bool operator<(const city& city1, const city& city2)
     return (*city::dists)[city1.m_id].m_distance < (*city::dists)[city2.m_id].m_distance;
 }
 
-
-
 static void Dijkstra(const vector<string> &city_name_by_idx,
               const vector<vector<int>> &adjcency_mat,
               const int from,
