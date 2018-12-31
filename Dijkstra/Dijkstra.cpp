@@ -1,3 +1,4 @@
+```cpp
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -233,3 +234,4 @@ static void Dijkstra(const vector<string> &city_name_by_idx,
     }
     cout << "Total distance : " << total_dist << endl;
 }
+```
