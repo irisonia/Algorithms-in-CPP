@@ -181,7 +181,7 @@ static void Dijkstra(const vector<string> &city_name_by_idx,
         }
 
         /* update distances to djacents of 'cur'.
-         * if an adjacent city distance has improved, add to queue */
+           if an adjacent city distance has improved, add to queue */
         size_t dist_so_far = dists[cur_city_id].m_distance;
         vector<int>::const_iterator it = adjcency_mat[cur_city_id].begin();
         vector<int>::const_iterator it_end = adjcency_mat[cur_city_id].end();
