@@ -153,7 +153,7 @@ static void Dijkstra(const vector<string> &city_name_by_idx,
   /* for sorting queued adjacents by distance */
   city::dists = &dists;
 
-  /* initialize rout with 'from' */
+  /* initialize route with 'from' */
   dists[from].m_distance = 0;
   dists[from].m_prev_city = from;
 
@@ -187,7 +187,7 @@ static void Dijkstra(const vector<string> &city_name_by_idx,
       {
           /* explanation of the following 'if' statement:
              (*it != 0 ) --> the city which index is adj_idx is adjacent to cur city
-             (0 == visited[adj_idx]) -->  and hasn't yet been added to rout. */
+             (0 == visited[adj_idx]) -->  and hasn't yet been added to route. */
           if ((*it != 0) && (0 == visited[adj_idx]))
           {
               int new_dist_to_adjecent = *it + dist_so_far;
@@ -207,7 +207,7 @@ static void Dijkstra(const vector<string> &city_name_by_idx,
       return;
   }
 
-  /* recycle 'visited' to remember the rout, as we back-trace it from 'to' to 'from' */
+  /* recycle 'visited' to remember the route, as we back-trace it from 'to' to 'from' */
   for (i = 0; cur_city_id != from; ++i)
   {
       visited[i] = cur_city_id;
@@ -215,7 +215,7 @@ static void Dijkstra(const vector<string> &city_name_by_idx,
   }
   visited[i] = from;
 
-  /* print the rout by going backwards in visied */
+  /* print the route by going backwards in visied */
   unsigned long total_dist = 0;
   const string print_delim[] = {"\n", "--->"};
   while (i >= 0)
