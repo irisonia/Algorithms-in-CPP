@@ -20,4 +20,7 @@ city name from, city name to, distance
 
 query city from, query city to
 ```
-- Please let me know if you come across a bug, have a suggetion for improvement or any other helpful comment. Thank you :)
+
+Please let me know if you come across a bug, have a suggetion for improvement or any other helpful comment.  
+
+**Thank you for visiting :)**
