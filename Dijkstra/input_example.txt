@@ -5,7 +5,7 @@ Amsterdam
 Washington
 South Park
 Prague
-Edingbrough
+Edinburgh
 Toronto
 Oxford
 Tokyo
@@ -24,14 +24,14 @@ Home
 31
 Tel Aviv, Jerusalem, 1
 Tel Aviv, South Park, 1
-Tel Aviv, Edingbrough, 8
+Tel Aviv, Edinburgh, 8
 Amsterdam, Jerusalem, 1
 Washington, New York, 10
 South Park, Tel Aviv, 1
 South Park, Home, 30
 Prague, Tokyo, 2
-Edingbrough, Amsterdam, 1
-Edingbrough, Toronto, 2
+Edinburgh, Amsterdam, 1
+Edinburgh, Toronto, 2
 Toronto, Washington, 2
 Toronto, New York, 7
 Oxford, South Park, 1
