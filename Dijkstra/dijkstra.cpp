@@ -142,7 +142,7 @@ static void Dijkstra(
 {
     int cur_city_id = from;
     int num_cities = city_name_by_idx.size();
-    vector<int> visited(num_cities, 0);
+    vector<int> visited(num_cities, 0); /* can't be vector<bool> as it is recycled as a route holder */
     vector<BestDistance> dists(num_cities, BestDistance(INT_MAX, to));
     deque<City> adjacencts_by_nearest;
 
@@ -158,7 +158,6 @@ static void Dijkstra(
              [&dists](const City &city1, const City &city2)->bool {
             return dists[city1.m_id].m_distance < dists[city2.m_id].m_distance;
         });
-
         cur_city_id = adjacencts_by_nearest.front().m_id;
         adjacencts_by_nearest.pop_front();
 
