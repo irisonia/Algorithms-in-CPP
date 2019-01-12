@@ -1,10 +1,15 @@
 - Compile with std=c++11.
-- The algorithm prints the shortest path from one city to another in a directed, weighted graph.  
-  For locality of reference, and for working with integers rather than with strings, I have an adjacency matrix, and not
-  an adjacency list. This would make this specific implementation better for the denser graphs rather than for the sparse ones.
+- Prints the shortest path from one city to another in a directed, weighted graph of city names and integral distances.  
+  **This specific implementation is better for the denser graphs**, because for efficiency, I preferred locality of reference, 
+  and working with integers rather than with strings.  
+  Therefore, I have an adjacency matrix, and not an adjacency list, and an additional vector, that maps every city name to an index.
+  This saves lists traversals (access vector index instead), multiple copies of strings (copy int instead) and string comparisons  
+  (compare int instead). 
 - The output includes the route, the distance added by each city, and the total distance.
-- The input must be completely valid, as the code depends on valid input, and does not protect against input mistakes.
-  The input includes three parts, as described below. An example input can be found in the input_example.txt file.  
+- For efficiency, I chose to avoid exception handling, and rely on completely valid input.    
+  An exception will be thrown (map out of range exception) in case of invalid input.
+  
+  The input includes three parts, as described below. An example input can be found in the input_example.txt file.
   Please mind that if you supply input using a redirected input file, rather than via the terminal (type/copy paste), then the  
   lines in the input file are expected to be terminated Linux style, and not Windows style.  
   The input structure is as follows:
@@ -27,4 +32,5 @@ query city from, query city to
 Please let me know if you come across a bug, have a suggestion for improvement or any other helpful comment.  
 
 **Thank you for visiting :)**
+
 
