@@ -3,8 +3,6 @@
   **This specific implementation is better for the denser graphs**, because for efficiency, I preferred locality of reference, 
   and working with integers rather than with strings.  
   Therefore, I have an adjacency matrix, and not an adjacency list, and an additional vector, that maps every city name to an index.
-  This saves lists traversals (access vector index instead), multiple copies of strings (copy int instead) and string comparisons  
-  (compare int instead). 
 - The output includes the route, the distance added by each city, and the total distance.
 - For efficiency, I chose to avoid exception handling, and rely on completely valid input.    
   An exception will be thrown (map out of range exception) in case of invalid input.
