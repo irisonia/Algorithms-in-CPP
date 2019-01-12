@@ -5,6 +5,11 @@
 #include <vector>
 #include <deque>
 #include <map>
+// iris comment on the decision to have mat and not list
+// comment about not havin exception handling, so input must be correct
+// comment that it is for dense, cause it is mat rather than list for
+// locality and working woth IDs rather than with strings
+// iris mention that good with dense
 
 using namespace std;
 
@@ -131,16 +136,8 @@ struct City
 
     explicit City(int id): m_id(id)
     {}
-
-    /* for sorting by distance */
-    static const vector<BestDistance> *dists;
 };
-const vector<BestDistance> *City::dists = nullptr;
 
-bool operator<(const City& city1, const City& city2)
-{
-    return (*City::dists)[city1.m_id].m_distance < (*City::dists)[city2.m_id].m_distance;
-}
 
 static void Dijkstra(
         const vector<string> &city_name_by_idx,
@@ -154,9 +151,6 @@ static void Dijkstra(
     vector<BestDistance> dists(num_cities, BestDistance(INT_MAX, to));
     deque<City> adjacencts_by_nearest;
 
-    /* for sorting queued adjacents by distance */
-    City::dists = &dists;
-
     /* initialize route with 'from' */
     dists[from].m_distance = 0;
     dists[from].m_prev_city = from;
@@ -165,7 +159,10 @@ static void Dijkstra(
     while (! adjacencts_by_nearest.empty())
     {
         /* choose the closest next city */
-        sort(adjacencts_by_nearest.begin(), adjacencts_by_nearest.end());
+        sort(adjacencts_by_nearest.begin(), adjacencts_by_nearest.end(),
+             [&dists](const City &city1, const City &city2)->bool {
+            return dists[city1.m_id].m_distance < dists[city2.m_id].m_distance;
+        });
 
         cur_city_id = adjacencts_by_nearest.front().m_id;
         adjacencts_by_nearest.pop_front();
@@ -203,7 +200,6 @@ static void Dijkstra(
             }
         }
     }
-    City::dists = nullptr;
 
     if (cur_city_id != to)
     {
