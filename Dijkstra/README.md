@@ -1,6 +1,6 @@
 - Compile with std=c++11.
 - The algorithm prints the shortest path from one city to another in a directed, weighted graph.  
-  For enjoying locality of reference, and working with integers rather than with strings, I have an adjacency matrix, and not
+  For locality of reference, and for working with integers rather than with strings, I have an adjacency matrix, and not
   an adjacency list. This would make this specific implementation better for the denser graphs rather than for the sparse ones.
 - The output includes the route, the distance added by each city, and the total distance.
 - The input must be completely valid, as the code depends on valid input, and does not protect against input mistakes.
