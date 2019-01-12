@@ -197,7 +197,7 @@ static void Dijkstra(
 
     if (cur_city_id != to)
     {
-        cout << "No Route Found..." << endl;
+        cout << "No Route Found...\n";
         return;
     }
 
@@ -223,7 +223,5 @@ static void Dijkstra(
         cout << city_name_by_idx[cur_city_id] << "(+" << added_dist << ")" << print_delim[!!i];
         --i;
     }
-    cout << "Total distance : " << total_dist << endl;
+    cout << "Total distance : " << total_dist << "\n";
 }
-
-
