@@ -5,11 +5,6 @@
 #include <vector>
 #include <deque>
 #include <map>
-// iris comment on the decision to have mat and not list
-// comment about not havin exception handling, so input must be correct
-// comment that it is for dense, cause it is mat rather than list for
-// locality and working woth IDs rather than with strings
-// iris mention that good with dense
 
 using namespace std;
 
