@@ -5,6 +5,11 @@
 #include <vector>
 #include <deque>
 #include <map>
+// iris comment on the decision to have mat and not list
+// comment about not havin exception handling, so input must be correct
+// comment that it is for dense, cause it is mat rather than list for
+// locality and working woth IDs rather than with strings
+// iris mention that good with dense
 
 using namespace std;
 
@@ -63,14 +68,14 @@ static void getCities(
         vector<string> &city_name_by_idx,
         map<string, int> &city_idx_by_name)
 {
-  for (int i = 0; i < num_cities; ++i)
-  {
-      string city_name;
+    for (int i = 0; i < num_cities; ++i)
+    {
+        string city_name;
 
-      getline(cin, city_name, '\n');
-      city_idx_by_name[city_name] = i;
-      city_name_by_idx[i] = city_name;
-  }
+        getline(cin, city_name, '\n');
+        city_idx_by_name[city_name] = i;
+        city_name_by_idx[i] = city_name;
+    }
 }
 
 static void getAdjacencies(
@@ -79,30 +84,31 @@ static void getAdjacencies(
         const map<string, int> &city_idx_by_name,
         vector<vector<int>> &adjacency_matrix)
 {
-  for (int i = 0; i < num_adjacencies; ++i)
-  {
-      string str;
-      int from, to, dist;
+    for (int i = 0; i < num_adjacencies; ++i)
+    {
+        string str;
+        int from, to, dist;
 
-      getline(cin, str, ',');
-      from = city_idx_by_name.at(str);
-      cin.ignore();
-      getline(cin, str, ',');
-      to = city_idx_by_name.at(str);
-      cin >> dist;
-      cin.ignore();
+        getline(cin, str, ',');
+        from = city_idx_by_name.at(str);
+        cin.ignore();
+        getline(cin, str, ',');
+        to = city_idx_by_name.at(str);
+        cin >> dist;
+        cin.ignore();
 
-      if (adjacency_matrix[from].empty())
-      {
-          adjacency_matrix[from].resize(num_cities);
-      }
-      adjacency_matrix[from][to] = dist;
-  }
+        if (adjacency_matrix[from].empty())
+        {
+                adjacency_matrix[from].resize(num_cities);
+        }
+        adjacency_matrix[from][to] = dist;
+    }
 }
 
-static void getAndSolveQuery(const vector<string> &city_name_by_idx,
-                           const map<string, int> &city_idx_by_name,
-                           const vector<vector<int>> &adjacency_matrix)
+static void getAndSolveQuery(
+        const vector<string> &city_name_by_idx,
+        const map<string, int> &city_idx_by_name,
+        const vector<vector<int>> &adjacency_matrix)
 {
     string str;
     int from, to;
@@ -141,10 +147,11 @@ bool operator<(const City& city1, const City& city2)
     return (*City::dists)[city1.m_id].m_distance < (*City::dists)[city2.m_id].m_distance;
 }
 
-static void Dijkstra(const vector<string> &city_name_by_idx,
-            const vector<vector<int>> &adjcency_mat,
-             int from,
-             int to)
+static void Dijkstra(
+        const vector<string> &city_name_by_idx,
+        const vector<vector<int>> &adjcency_mat,
+        int from,
+        int to)
 {
     int cur_city_id = from;
     int num_cities = city_name_by_idx.size();
