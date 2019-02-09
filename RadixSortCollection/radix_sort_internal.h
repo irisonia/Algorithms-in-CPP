@@ -1,6 +1,7 @@
 #ifndef RADIX_SORT_INTERNAL
 #define RADIX_SORT_INTERNAL
 
+#include <list>
 #include <memory>
 #include <climits>
 #include <functional>
@@ -11,11 +12,11 @@ auto GetMem(size_t sz, void *usable_mem = nullptr)
     size_t deleter_idx = !usable_mem;
     if (deleter_idx) usable_mem = new T[sz];
 
-    function<void(T*)> deleters[2] = {
+    std::function<void(T*)> deleters[2] = {
         [](T*){},
         [](T *mem){delete [] mem;}
     };
-    return std::unique_ptr<T[], function<void(T*)>>((T*)usable_mem, deleters[deleter_idx]);
+    return std::unique_ptr<T[], std::function<void(T*)>>((T*)usable_mem, deleters[deleter_idx]);
 }
 
 template<class T>
