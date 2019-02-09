@@ -106,8 +106,8 @@ struct RadixEntry
 template <class LOCATION_TYPE>
 void CountingUserDefined(
         const RadixEntry<LOCATION_TYPE>  *arr,
-        size_t                               arr_sz,
-        size_t                               round,
+        size_t                            arr_sz,
+        size_t                            round,
         RadixEntry<LOCATION_TYPE>        *out)
 {
     size_t histogram[256] = {0};
@@ -222,12 +222,10 @@ void RadixConsecutive(
 }
 
 template<class U, class T, typename it_t = typename std::list<T>::const_iterator>
-void RearrangeList(std::list<T> &lst,
-                  size_t arr_sz,
-                  RadixEntry<it_t> *sorted)
+void RearrangeList(std::list<T> &lst, size_t lst_sz, RadixEntry<it_t> *sorted)
 {
     auto *it_sorted = sorted;
-    auto *sorted_last = sorted + arr_sz - 1;
+    auto *sorted_last = sorted + lst_sz - 1;
 
     while (it_sorted < sorted_last){
         it_t splice_begin = it_sorted->m_first;
