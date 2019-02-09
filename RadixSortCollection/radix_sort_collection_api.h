@@ -1,6 +1,6 @@
-/*   
+/*
  *  Notes:
- *  - Ensure that the sorted type has move cctor and move copy assignment, 
+ *  - Ensure that the sorted type has move cctor and move copy assignment,
  *    for avoiding cctors/assignments from being performed during the sort.
  *  - Provide usable_memory if you don't want radix to allocate memory dynamically.
  *    See details about usable_memory in the API below.
@@ -8,9 +8,6 @@
 
 #ifndef RADIX_SORT_COLLECTION_API_H
 #define RADIX_SORT_COLLECTION_API_H
-
-#include <list>
-#include <cstdint>
 
 #include "radix_sort_internal.h"
 
