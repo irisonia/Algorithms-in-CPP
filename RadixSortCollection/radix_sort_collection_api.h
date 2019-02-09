@@ -1,11 +1,9 @@
-/*  RadixSortCollection.h
- *  See README file for RadixSort usage examples.
- *  
+/*   
  *  Notes:
- *  1. Ensure that the sorted type has move cctor and move copy assignment, 
- *     for avoiding cctors/assignments from being performed during the sort.
- *  2. Provide usable_memory if you don't want radix to allocate memory dynamically.
- *     See details about usable_memory in the API below.
+ *  - Ensure that the sorted type has move cctor and move copy assignment, 
+ *    for avoiding cctors/assignments from being performed during the sort.
+ *  - Provide usable_memory if you don't want radix to allocate memory dynamically.
+ *    See details about usable_memory in the API below.
 */
 
 #ifndef RADIX_SORT_COLLECTION_API_H
