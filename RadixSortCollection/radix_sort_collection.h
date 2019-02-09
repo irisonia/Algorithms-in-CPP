@@ -14,7 +14,7 @@
 #include <list>
 #include <cstdint>
 
-#include "radix_internal.h"
+#include "radix_sort_internal.h"
 
 /* Description: Sort an array of any integral type.
  *
