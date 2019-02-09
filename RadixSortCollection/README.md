@@ -2,7 +2,7 @@ A collection of radix sorts for array and for std::list, for c++17 compiler.
 -------------------------------------------------------------------------------------------
 
 Following are the different usages for the RadixSort functions.  
-**Examples for each can be found in main.cpp file**.
+**Examples for each can be found in test.cpp file**.
 
 Notes:  
   - Make sure that the type has a move cctor and a move copy assignment,  
