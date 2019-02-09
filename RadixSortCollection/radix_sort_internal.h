@@ -5,6 +5,19 @@
 #include <climits>
 #include <functional>
 
+template <class T>
+auto GetMem(size_t sz, void *usable_mem = nullptr)
+{
+    size_t deleter_idx = !usable_mem;
+    if (deleter_idx) usable_mem = new T[sz];
+
+    function<void(T*)> deleters[2] = {
+        [](T*){},
+        [](T *mem){delete [] mem;}
+    };
+    return std::unique_ptr<T[], function<void(T*)>>((T*)usable_mem, deleters[deleter_idx]);
+}
+
 template<class T>
 void CountingIntegral(
         const T *arr,
@@ -34,7 +47,7 @@ void CountingIntegral(
 }
 
 template<class T>
-void RadixIntegral(T *arr, size_t arr_sz, T *helper_arr = nullptr)
+void RadixIntegral(T *arr, size_t sz, void *helper_arr = nullptr)
 {
     // 1. rearrange arr: min values of type T, then negative values, then positive values.
     // 2. turn only the part of the negative values into positive values.
@@ -42,7 +55,7 @@ void RadixIntegral(T *arr, size_t arr_sz, T *helper_arr = nullptr)
     // 4. turn the values in the negative part back to negative, and reverse them.
 
     T *pos_begin = arr;
-    for (T *p = arr, *p_end = arr + arr_sz; p < p_end; ++p) {
+    for (T *p = arr, *p_end = arr + sz; p < p_end; ++p) {
         if (*p < 0) {
             std::swap(*pos_begin, *p);
             ++pos_begin;
@@ -61,15 +74,12 @@ void RadixIntegral(T *arr, size_t arr_sz, T *helper_arr = nullptr)
         }
     }
 
-    T *out_arr = helper_arr;
-    if (!out_arr) {
-        out_arr = new T[arr_sz];
-    }
+    auto out_arr = GetMem<T>(sz, helper_arr);
     for (auto [round, out_neg_ptr, out_pos_ptr, pos_sz, neg_sz] = std::tuple{
                 1U,
-                out_arr + (neg_begin - arr),
-                out_arr + (pos_begin - arr),
-                arr_sz - (pos_begin - arr),
+                out_arr.get() + (neg_begin - arr),
+                out_arr.get() + (pos_begin - arr),
+                sz - (pos_begin - arr),
                 pos_begin - neg_begin};
         round <= sizeof(T);
         ++round) {
@@ -85,10 +95,6 @@ void RadixIntegral(T *arr, size_t arr_sz, T *helper_arr = nullptr)
         *neg_begin = -*neg_rev;
         *neg_rev = tmp;
     }
-
-     if (!helper_arr) {
-         delete [] out_arr; out_arr = nullptr;
-     }
 }
 
 template<class LOC>
@@ -178,19 +184,6 @@ void RadixImpl(
         CountingUserDefined(sorted, sz, round, to_sort);
         std::swap(to_sort, sorted);
     }
-}
-
-template <class T>
-auto GetMem(size_t sz, void *usable_mem = nullptr)
-{
-    size_t deleter_idx = !usable_mem;
-    if (deleter_idx) usable_mem = new T[sz];
-
-    function<void(T*)> deleters[2] = {
-        [](T*){},
-        [](T *mem){delete [] mem;}
-    };
-    return std::unique_ptr<T[], function<void(T*)>>((T*)usable_mem, deleters[deleter_idx]);
 }
 
 template <class U, class T, class PREPARE_OUTPUT>
