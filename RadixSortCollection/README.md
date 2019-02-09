@@ -7,10 +7,9 @@ See test.cpp for running examples.*
 
 Notes:  
   - Requires a C++17 compiler.
-  - Make sure that the type has a move cctor and a move copy assignment,  
-    for avoiding cctors/copy assignments being performed during the sort.  
-  - Provide usable_memory if you don't want radix to allocate memory dynamically.  
-    See details about the usable memory size in the API (radix_sort_collection_api.h).
+  - Make sure that the type has a move cctor and a move copy assignment, to prevent cctors/copy assignments during the sort.  
+  - Provide usable_memory if you don't want radix to allocate memory dynamically. 
+    See details about the usable memory size in the API (radix_sort_collection_api.h).  
 
 Following are the different usages for the RadixSort functions:
 ---------------------------------------------------------------
