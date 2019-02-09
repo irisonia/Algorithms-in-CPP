@@ -4,7 +4,7 @@ A collection of radix sorts for array and for std::list, for c++17 compiler.
 Following are the different usages for the RadixSort functions.
 
 Notes:  
-  - Requires C++17 compiler.
+  - Requires a C++17 compiler.
   - Make sure that the type has a move cctor and a move copy assignment,  
     for avoiding cctors/assignments being performed during the sort.  
   - Provide usable_memory if you don't want radix to allocate memory dynamically.  
