@@ -2,13 +2,13 @@ A collection of radix sorts for array and for std::list, for c++17 compiler.
 -------------------------------------------------------------------------------------------
 
 Following are the different usages for the RadixSort functions.  
-**Examples for each can be found in test.cpp file**.
+**Examples for each can be found in main.cpp file**.
 
 Notes:  
   1. Make sure that the type has a move cctor and a move copy assignment,  
      for avoiding cctors/assignments being performed during the sort.  
   2. Provide usable_memory if you don't want radix to allocate memory dynamically.  
-     See details about the usable memory size in the API (radix_collection.h).
+     See details about the usable memory size in the API (radix_sort.h).
 
 Usages:  
 - Sort a consecutive array of any integral type:  
