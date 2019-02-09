@@ -546,7 +546,7 @@ void TestVectorUserDefinedType(size_t sz)
 
 int main()
 {
-   const unsigned int sz = 100000;
+   const unsigned int sz = 5000000;
 
    srand(time(0));
 
