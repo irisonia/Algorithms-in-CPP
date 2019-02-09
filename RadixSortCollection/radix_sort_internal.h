@@ -98,7 +98,7 @@ struct RadixEntry
     LOC     m_first;
     // two functionalities:
     // when sorting: representation of the element as unsigned integral type.
-    // when rearranging consecutive memory: an index, for keeping track of the.
+    // when rearranging consecutive memory: an index, for keeping track of the
     // moving elements. This is why the field is size_t.
     size_t  m_second;
 };
