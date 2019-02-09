@@ -1,4 +1,4 @@
-A collection of radix sorts for array and for std::list, for C++17 compiler.  
+A collection of radix sorts for array and for std::list, for C++17 compilers.  
 -------------------------------------------------------------------------------------------
 
 Following are the different usages for the RadixSort functions.
