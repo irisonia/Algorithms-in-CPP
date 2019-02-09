@@ -8,8 +8,8 @@
  *     See details about usable_memory in the API below.
 */
 
-#ifndef RADIX_SORT_COLLECTION_H
-#define RADIX_SORT_COLLECTION_H
+#ifndef RADIX_SORT_COLLECTION_API_H
+#define RADIX_SORT_COLLECTION_API_H
 
 #include <list>
 #include <cstdint>
@@ -171,4 +171,4 @@ int RadixSort(
     }
 }
 
-#endif // RADIX_SORT_COLLECTION_H
+#endif // RADIX_SORT_COLLECTION_API_H
