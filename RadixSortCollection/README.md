@@ -5,9 +5,6 @@ A collection of radix sorts for array and for std::list, for C++17 compilers.
 even when using -Ofast.  
 See test.cpp for running examples.*
 
-Following are the different usages for the RadixSort functions:
----------------------------------------------------------------
-
 Notes:  
   - Requires a C++17 compiler.
   - Make sure that the type has a move cctor and a move copy assignment,  
@@ -15,7 +12,9 @@ Notes:
   - Provide usable_memory if you don't want radix to allocate memory dynamically.  
     See details about the usable memory size in the API (radix_sort_collection_api.h).
 
-Usages:  
+Following are the different usages for the RadixSort functions:
+---------------------------------------------------------------
+
 - Sort a consecutive array of any integral type:  
   *RadixSort(arr, arr_size);  
   RadixSort(arr, arr_size, usable_memory);*
