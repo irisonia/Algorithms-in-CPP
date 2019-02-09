@@ -2,7 +2,8 @@ A collection of radix sorts for array and for std::list, for C++17 compilers.
 -------------------------------------------------------------------------------------------
 
 *When sorting integral types (as opposed to user defined types), performs much faster than std::sort,
-even when using -Ofast.  See test.cpp for running examples.*
+even when using -Ofast.  
+See test.cpp for running examples.*
 
 Following are the different usages for the RadixSort functions:
 ---------------------------------------------------------------
