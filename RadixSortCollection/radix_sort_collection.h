@@ -26,7 +26,7 @@
  *
  * Return: 0 for success, 1 in case of memory allocation failure.
  *
- * Resouces usage: Unless usable_memory is provided, the sort dynamically allocates an array of the same size as arr.
+ * Memory complexity: Unless usable_memory is provided, the sort dynamically allocates an array of the same size as arr.
 */
 template<class T>
 int RadixSort(T *arr, size_t num_elements, void *usable_memory = nullptr) noexcept
@@ -40,8 +40,8 @@ int RadixSort(T *arr, size_t num_elements, void *usable_memory = nullptr) noexce
     }
 }
 
-/* Description: Sort an arry of any type T, that can be represented as an unsigned integral type.
- * Radix sorts the unsigned integral values that correspond to the elments, and then rearranges the array accordingly.
+/* Description: Sort an array of any type T, that can be represented as an unsigned integral type.
+ * Radix sorts the unsigned integral values that correspond to the elements, and then rearranges the array accordingly.
  * The function refers to the unsigned integral type as U.
  *
  * Parameters:
@@ -84,10 +84,10 @@ int RadixSort(
     }
 }
 
-/* Description: Sort an arry of any type T, that can be represented as an unsigned integral type, BUT without actually changing
+/* Description: Sort an array of any type T, that can be represented as an unsigned integral type, BUT without actually changing
  * the original array. Instead, fill an output array with the indexes of the elements from the original array, sorted.
  * Useful when needing different sort views of a single array at the same time.
- * Radix sorts an unsigned integral values that correspond to the elments, and then places the indexes in the output array accordingly.
+ * Radix sorts an unsigned integral values that correspond to the elements, and then places the indexes in the output array accordingly.
  * The function refers to the unsigned integral type as U.
  *
  * Parameters:
@@ -137,7 +137,7 @@ int RadixSortIndexesOnly(
 }
 
 /* Description: Sort a std::list of any type T, that can be represented as an unsigned integral type.
- * Radix sorts an unsigned integral values that correspond to the elments, and then rearranges the list accordingly.
+ * Radix sorts an unsigned integral values that correspond to the elements, and then rearranges the list accordingly.
  * The function refers to the unsigned integral type as U.
  *
  * Parameters:
