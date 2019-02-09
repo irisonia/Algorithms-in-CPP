@@ -1,5 +1,5 @@
-#ifndef RADIX_INTERNAL
-#define RADIX_INTERNAL
+#ifndef RADIX_SORT_INTERNAL
+#define RADIX_SORT_INTERNAL
 
 #include <memory>
 #include <climits>
@@ -274,4 +274,4 @@ void RadixListImpl(
     RearrangeList<U>(lst, lst_sz, sorted.get());
 }
 
-#endif // RADIX_INTERNAL
+#endif // RADIX_SORT_INTERNAL
