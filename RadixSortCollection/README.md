@@ -8,7 +8,7 @@ Notes:
   1. Make sure that the type has a move cctor and a move copy assignment,  
      for avoiding cctors/assignments being performed during the sort.  
   2. Provide usable_memory if you don't want radix to allocate memory dynamically.  
-     See details about the usable memory size in the API (radix_sort.h).
+     See details about the usable memory size in the API (radix_sort_collection_api.h).
 
 Usages:  
 - Sort a consecutive array of any integral type:  
