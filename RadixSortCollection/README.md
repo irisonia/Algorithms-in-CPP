@@ -1,4 +1,4 @@
-A collection of radix sorts for array and for std::list, for C++17 compilers.  
+A collection of radix sort functions for array and for std::list, for C++17 compilers.  
 -------------------------------------------------------------------------------------------
 
 *When sorting integral types (as opposed to user defined types), performs much faster than std::sort,
