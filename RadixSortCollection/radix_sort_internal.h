@@ -36,9 +36,9 @@ void CountingIntegral(
 template<class T>
 void RadixIntegral(T *arr, size_t arr_sz, T *helper_arr = nullptr)
 {
-    // 1. rearrange arr: min val of type T, then negative vals, then positive vals.
+    // 1. rearrange arr: min values of type T, then negative values, then positive values.
     // 2. turn only the part of the negative values into positive values.
-    // 3. sort the negative part separately and the positive part separately
+    // 3. sort the negative part separately and the positive part separately.
     // 4. turn the values in the negative part back to negative, and reverse them.
 
     T *pos_begin = arr;
