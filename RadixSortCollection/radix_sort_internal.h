@@ -10,8 +10,9 @@ auto GetMem(size_t sz, void *usable_mem = nullptr)
 {
     using mem_ptr = std::unique_ptr<T[], void(*)(T*)>;
 
-    return (!usable_mem) ? mem_ptr(new T[sz], [](T* mem){delete [] mem;}) :
-                           mem_ptr((T*)usable_mem, [](T*){});
+    return (nullptr == usable_mem) ?
+            mem_ptr(new T[sz], [](T* mem){delete [] mem;}) :
+            mem_ptr((T*)usable_mem, [](T*){});
 }
 
 template<class T>
