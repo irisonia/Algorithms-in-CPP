@@ -4,19 +4,14 @@
 #include <list>
 #include <memory>
 #include <climits>
-#include <functional>
 
 template <class T>
 auto GetMem(size_t sz, void *usable_mem = nullptr)
 {
-    size_t deleter_idx = !usable_mem;
-    if (deleter_idx) usable_mem = new T[sz];
+    using mem_ptr = std::unique_ptr<T[], void(*)(T*)>;
 
-    std::function<void(T*)> deleters[2] = {
-        [](T*){},
-        [](T *mem){delete [] mem;}
-    };
-    return std::unique_ptr<T[], std::function<void(T*)>>((T*)usable_mem, deleters[deleter_idx]);
+    return (!usable_mem) ? mem_ptr(new T[sz], [](T* mem){delete [] mem;}) :
+                           mem_ptr((T*)usable_mem, [](T*){});
 }
 
 template<class T>
