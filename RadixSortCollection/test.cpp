@@ -546,9 +546,20 @@ void TestVectorUserDefinedType(size_t sz)
 
 int main()
 {
-   const unsigned int sz = 5000000;
+   const unsigned int sz = 10000000;
 
    srand(time(0));
+
+   TestArrIntegralTypeAllocHere<size_t>(SIZE_MAX, sz, false);
+   TestArrIntegralType<int>(INT_MAX, sz, false, true);
+    TestArrIntegralType<int>(INT_MAX, sz, true);
+   TestArrIntegralType<int>(INT_MAX, sz - 1, false);
+   TestArrIntegralType<int>(INT_MAX, sz, false);
+   TestArrIntegralType<int>(INT_MAX, sz, false);
+   TestArrIntegralType<short>(SHRT_MAX, sz, false);
+
+   TestListUserDefinedType(sz);
+   TestListUserDefinedTypeAllocateHere(sz);
 
    TestArrUserDefinedType(sz);
    TestArrUserDefinedTypeAllocHere(sz);
@@ -556,19 +567,6 @@ int main()
 
    TestArrUserDefinedTypeIndexesOnly(sz);
    TestArrUserDefinedTypeIndexesOnlyAllocHere(sz);
-
-   TestListUserDefinedType(sz);
-   TestListUserDefinedTypeAllocateHere(sz);
-
-   TestArrIntegralTypeAllocHere<size_t>(SIZE_MAX, sz, true);
-   TestArrIntegralType<int>(INT_MAX, sz, false, true);
-   TestArrIntegralType<int>(INT_MAX, sz, true);
-   TestArrIntegralType<int>(INT_MAX, sz, false);
-   TestArrIntegralType<size_t>(SIZE_MAX, sz, true);
-   TestArrIntegralType<size_t>(SIZE_MAX, sz - 1, true);
-   TestArrIntegralType<unsigned short>(USHRT_MAX, sz, true);
-   TestArrIntegralType<short>(SHRT_MAX, sz, false);
-   TestArrIntegralType<short>(SHRT_MAX, sz, false, true);
 
    TestVectorIntegralType(sz);
    TestVectorUserDefinedType(sz);
