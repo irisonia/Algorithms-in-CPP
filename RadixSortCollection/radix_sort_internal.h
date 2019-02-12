@@ -23,7 +23,7 @@ void CountingIntegral(
         T       *out_arr)
 {
     size_t histogram[256] = {0};
-    size_t shift_bits = (cur_byte_idx - 1) * 8;
+    const size_t shift_bits = (cur_byte_idx - 1) * 8;
     const size_t mask = ~(size_t)0 >> ((sizeof(size_t) - cur_byte_idx) * 8);
 
     for (size_t i = 0; i < arr_sz; ++i) {
@@ -31,13 +31,13 @@ void CountingIntegral(
     }
 
     for (size_t i = 0, offset = 0; i < 256; ++i) {
-        size_t bucket_sz = histogram[i];
+        const size_t bucket_sz = histogram[i];
         histogram[i] = offset;
         offset += bucket_sz;
     }
 
     for (size_t i = 0; i < arr_sz; ++i) {
-        size_t idx = (arr[i] & mask) >> shift_bits;
+        const size_t idx = (arr[i] & mask) >> shift_bits;
         out_arr[histogram[idx]] = arr[i];
         ++histogram[idx];
     }
@@ -59,7 +59,7 @@ void RadixIntegral(T *arr, size_t sz, void *helper_arr = nullptr)
         }
     }
 
-    T t_min = std::numeric_limits<T>::min();
+    const T t_min = std::numeric_limits<T>::min();
     T *neg_begin = arr;
     for (T *p = arr; p < pos_begin; ++p) {
         if (t_min == *p) {
@@ -88,7 +88,7 @@ void RadixIntegral(T *arr, size_t sz, void *helper_arr = nullptr)
     }
 
     for (T *neg_rev = pos_begin - 1; neg_begin <= neg_rev; ++neg_begin, --neg_rev) {
-        T tmp = -*neg_begin;
+        const T tmp = -*neg_begin;
         *neg_begin = -*neg_rev;
         *neg_rev = tmp;
     }
@@ -122,13 +122,13 @@ void CountingUserDefined(
     }
 
     for (size_t i = 0, offset = 0; i < 256; ++i) {
-        size_t bucket_sz = histogram[i];
+        const size_t bucket_sz = histogram[i];
         histogram[i] = offset;
         offset += bucket_sz;
     }
 
     for (size_t i = 0; i < arr_sz; ++i) {
-        size_t idx = (arr[i].m_second & mask) >> shift_bits;
+        const size_t idx = (arr[i].m_second & mask) >> shift_bits;
         out[histogram[idx]] = arr[i];
         ++histogram[idx];
     }
@@ -196,7 +196,7 @@ void RadixConsecutive(
 
     auto sorted = GetMem<radix_entry_t>(arr_sz, usable_mem1);
     auto to_sort = GetMem<radix_entry_t>(arr_sz, usable_mem2);
-    auto init_radix_entry =
+    const auto init_radix_entry =
         [&T_to_unsigned](radix_entry_t &entry, const T *it_to_elem, size_t elem_idx){
             entry.m_first = elem_idx;
             entry.m_second = T_to_unsigned(*it_to_elem);
@@ -218,7 +218,7 @@ void RearrangeList(std::list<T> &lst, size_t lst_sz, RadixEntry<it_t> *sorted)
     auto *sorted_last = sorted + lst_sz - 1;
 
     while (it_sorted < sorted_last){
-        it_t splice_begin = it_sorted->m_first;
+        const it_t splice_begin = it_sorted->m_first;
         it_t splice_end = splice_begin; ++splice_end;
 
         // splice as large chunks as possible
@@ -243,7 +243,7 @@ void RadixListImpl(
 {
     using radix_entry_t = RadixEntry<it_t>;
 
-    size_t lst_sz = lst.size();
+    const size_t lst_sz = lst.size();
     auto sorted = GetMem<radix_entry_t>(lst_sz, usable_mem1);
     auto to_sort = GetMem<radix_entry_t>(lst_sz, usable_mem2);
 
