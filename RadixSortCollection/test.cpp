@@ -27,14 +27,14 @@ public:
        m_str = name;
    }
 
-   SomeClass& operator=(const SomeClass &&rhs)
+   SomeClass& operator=(SomeClass &&rhs)
    {
        m_num = rhs.m_num;
        m_str = std::move(rhs.m_str);
        return *this;
    }
 
-   SomeClass(const SomeClass &&rhs)
+   SomeClass(SomeClass &&rhs)
    {
        m_num = rhs.m_num;
        m_str = std::move(rhs.m_str);
@@ -260,10 +260,10 @@ void TestImpl(
        IT it,
        IT it_ok,
        size_t sz,
-       CREATE_ENTRY &create_entry,
-       RADIX_CALL &radix_call,
-       STD_CALL &std_call,
-       CHECK &check_call)
+       const CREATE_ENTRY &create_entry,
+       const RADIX_CALL &radix_call,
+       const STD_CALL &std_call,
+       const CHECK &check_call)
 {
    for (size_t i = 0; i < sz; ++i, ++it, ++it_ok) {
       create_entry(it, it_ok, i);
@@ -271,7 +271,7 @@ void TestImpl(
 
    timespec start_radix, end_radix;
    clock_gettime(CLOCK_MONOTONIC, &start_radix);
-   int radix_status = radix_call();
+   const int radix_status = radix_call();
    clock_gettime(CLOCK_MONOTONIC, &end_radix);
 
    if (!radix_status) {
@@ -296,12 +296,12 @@ void TestArrUserDefinedType(size_t sz)
    auto arr = std::shared_ptr<SomeClass[]>(new SomeClass[sz]);
    auto arr_ok = std::shared_ptr<SomeClass[]>(new SomeClass[sz]);
 
-   auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
+   const auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
        *elem1 = *elem2 = SomeClass(i);
    };
-   auto radix_call = [arr, sz]() {return RadixSort(arr.get(), sz, SomeClass::getKey);};
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, sz]() {check(arr.get(), arr_ok.get(), sz);};
+   const auto radix_call = [arr, sz]() {return RadixSort(arr.get(), sz, SomeClass::getKey);};
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, sz]() {check(arr.get(), arr_ok.get(), sz);};
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -323,14 +323,14 @@ void TestArrUserDefinedTypeAllocHere(size_t sz)
        return;
    }
 
-   auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
+   const auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
        *elem1 = *elem2 = SomeClass(i);
    };
-   auto radix_call = [arr, sz, mem1, mem2]() {
+   const auto radix_call = [arr, sz, mem1, mem2]() {
        return RadixSort(arr.get(), sz, SomeClass::getKey, mem1, mem2);
    };
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 
@@ -346,13 +346,13 @@ void TestArrUserDefinedTypeAllocHerePartially(size_t sz)
    auto arr_ok = std::shared_ptr<SomeClass[]>(new SomeClass[sz]);
    auto mem1 = std::shared_ptr<size_t[]>(new size_t[sz * 2]);
 
-   auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
+   const auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
        *elem1 = *elem2 = SomeClass(i);
    };
-   auto radix_call = [arr, sz, mem1]() {
+   const auto radix_call = [arr, sz, mem1]() {
        return RadixSort(arr.get(), sz, SomeClass::getKey, mem1.get());};
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -365,13 +365,13 @@ void TestArrUserDefinedTypeIndexesOnly(size_t sz)
    auto arr_ok = std::shared_ptr<SomeClass[]>(new SomeClass[sz]);
    auto idxs = std::shared_ptr<size_t[]>(new size_t[sz]);
 
-   auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
+   const auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
        *elem1 = *elem2 = SomeClass(i);
    };
-   auto radix_call = [arr, sz, idxs]() {
+   const auto radix_call = [arr, sz, idxs]() {
        return RadixSortIndexesOnly(arr.get(), sz, SomeClass::getKey, idxs.get());};
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, idxs, sz]() { check(arr.get(), arr_ok.get(), idxs.get(), sz); };
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, idxs, sz]() { check(arr.get(), arr_ok.get(), idxs.get(), sz); };
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -386,13 +386,13 @@ void TestArrUserDefinedTypeIndexesOnlyAllocHere(size_t sz)
    auto mem1 = std::shared_ptr<size_t[]>(new size_t[sz * 2]);
    auto mem2 = std::shared_ptr<size_t[]>(new size_t[sz * 2]);
 
-   auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
+   const auto create_entry = [](SomeClass *elem1, SomeClass *elem2, size_t i) {
        *elem1 = *elem2 = SomeClass(i);
    };
-   auto radix_call = [arr, sz, idxs, mem1, mem2]() {
+   const auto radix_call = [arr, sz, idxs, mem1, mem2]() {
        return RadixSortIndexesOnly(arr.get(), sz, SomeClass::getKey, idxs.get(), mem1.get(), mem2.get());};
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, idxs, sz]() { check(arr.get(), arr_ok.get(), idxs.get(), sz); };
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, idxs, sz]() { check(arr.get(), arr_ok.get(), idxs.get(), sz); };
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -412,13 +412,13 @@ void TestArrIntegralType(
    auto arr = std::shared_ptr<T[]>(new T[sz]);
    auto arr_ok = std::shared_ptr<T[]>(new T[sz]);
 
-   auto create_entry = [max_val, all_positive, all_negative]
+   const auto create_entry = [max_val, all_positive, all_negative]
                        (T *elem1, T *elem2, size_t) {
        *elem1 = *elem2 = GetRandIntegral<T>(max_val, all_positive, all_negative);
    };
-   auto radix_call = [arr, sz]() {return RadixSort(arr.get(), sz);};
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
+   const auto radix_call = [arr, sz]() {return RadixSort(arr.get(), sz);};
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -440,13 +440,13 @@ void TestArrIntegralTypeAllocHere(
    auto arr_ok = std::shared_ptr<T[]>(new T[sz]);
    auto mem = std::shared_ptr<char[]>(new char[sz * sizeof(T)]);
 
-   auto create_entry = [max_val, all_positive, all_negative]
+   const auto create_entry = [max_val, all_positive, all_negative]
                        (T *elem1, T *elem2, size_t) {
        *elem1 = *elem2 = GetRandIntegral<T>(max_val, all_positive, all_negative);
    };
-   auto radix_call = [arr, sz, mem]() {return RadixSort(arr.get(), sz, mem.get());};
-   auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
-   auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
+   const auto radix_call = [arr, sz, mem]() {return RadixSort(arr.get(), sz, mem.get());};
+   const auto std_call = [arr_ok, sz](){std::sort(arr_ok.get(), arr_ok.get() + sz);};
+   const auto check_call = [arr, arr_ok, sz]() { check(arr.get(), arr_ok.get(), sz); };
 
    TestImpl(arr.get(), arr_ok.get(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -458,7 +458,7 @@ void TestListUserDefinedType(size_t sz)
    list<SomeClass> lst, lst_ok;
 
    using it_t = list<SomeClass>::iterator;
-   auto create_entry = [&lst, &lst_ok](it_t, it_t, size_t i) {
+   const auto create_entry = [&lst, &lst_ok](it_t, it_t, size_t i) {
        SomeClass f(i);
        try {
            lst.push_back(f);
@@ -468,9 +468,9 @@ void TestListUserDefinedType(size_t sz)
            cout << "Caught during std::list<SomeClass>::push_back():\n" << e.what() << endl;
        }
    };
-   auto radix_call = [&lst]() {return RadixSort(lst, SomeClass::getKey);};
-   auto std_call = [&lst_ok](){lst_ok.sort();};
-   auto check_call = [&lst, &lst_ok, sz]() {check(lst, lst_ok, sz);};
+   const auto radix_call = [&lst]() {return RadixSort(lst, SomeClass::getKey);};
+   const auto std_call = [&lst_ok](){lst_ok.sort();};
+   const auto check_call = [&lst, &lst_ok, sz]() {check(lst, lst_ok, sz);};
 
    TestImpl(lst.begin(), lst_ok.begin(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -485,7 +485,7 @@ void TestListUserDefinedTypeAllocateHere(size_t sz)
    auto mem2 = shared_ptr<char[]>(new char[mem_sz]);
 
    using it_t = list<SomeClass>::iterator;
-   auto create_entry = [&lst, &lst_ok](it_t, it_t, size_t i) {
+   const auto create_entry = [&lst, &lst_ok](it_t, it_t, size_t i) {
        SomeClass f(i);
        try {
            lst_ok.push_back(f);
@@ -495,9 +495,9 @@ void TestListUserDefinedTypeAllocateHere(size_t sz)
            cout << "Caught during std::list<SomeClass>::push_back():\n" << e.what() << endl;
        }
    };
-   auto radix_call = [&lst, mem1, mem2]() {return RadixSort(lst, SomeClass::getKey, mem1.get(), mem2.get());};
-   auto std_call = [&lst_ok](){lst_ok.sort();};
-   auto check_call = [&lst, &lst_ok, sz]() {check(lst, lst_ok, sz);};
+   const auto radix_call = [&lst, mem1, mem2]() {return RadixSort(lst, SomeClass::getKey, mem1.get(), mem2.get());};
+   const auto std_call = [&lst_ok](){lst_ok.sort();};
+   const auto check_call = [&lst, &lst_ok, sz]() {check(lst, lst_ok, sz);};
 
    TestImpl(lst.begin(), lst_ok.begin(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -509,12 +509,12 @@ void TestVectorIntegralType(size_t sz)
    vector<unsigned int> vec(sz), vec_ok(sz);
 
    using it_t = vector<unsigned int>::iterator;
-   auto create_entry = [](it_t elem1, it_t elem2, size_t) {
+   const auto create_entry = [](it_t elem1, it_t elem2, size_t) {
        *elem1 = *elem2 = GetRandIntegral<unsigned int>(UINT_MAX, false);
    };
-   auto radix_call = [&vec, sz]() {return RadixSort(&(vec[0]), sz);};
-   auto std_call = [&vec_ok](){std::sort(vec_ok.begin(), vec_ok.end());};
-   auto check_call = [&vec, &vec_ok, sz]() { check(vec.begin(), vec_ok.begin(), sz); };
+   const auto radix_call = [&vec, sz]() {return RadixSort(&(vec[0]), sz);};
+   const auto std_call = [&vec_ok](){std::sort(vec_ok.begin(), vec_ok.end());};
+   const auto check_call = [&vec, &vec_ok, sz]() { check(vec.begin(), vec_ok.begin(), sz); };
 
    TestImpl(vec.begin(), vec_ok.begin(), sz, create_entry, radix_call, std_call, check_call);
 }
@@ -527,7 +527,7 @@ void TestVectorUserDefinedType(size_t sz)
    vector<SomeClass> vec_ok;
 
    using it_t = vector<SomeClass>::iterator;
-   auto create_entry = [&vec, &vec_ok](it_t, it_t, size_t i) {
+   const auto create_entry = [&vec, &vec_ok](it_t, it_t, size_t i) {
        SomeClass f(i);
        try {
            vec.push_back(f);
@@ -537,22 +537,22 @@ void TestVectorUserDefinedType(size_t sz)
            cout << "Caught during std::vector<SomeClass>::push_back():\n" << e.what() << endl;
        }
    };
-   auto radix_call = [&vec, sz]() {return RadixSort(&(vec[0]), sz, SomeClass::getKey);};
-   auto std_call = [&vec_ok](){std::sort(vec_ok.begin(), vec_ok.end());};
-   auto check_call = [&vec, &vec_ok, sz]() { check(vec.begin(), vec_ok.begin(), sz); };
+   const auto radix_call = [&vec, sz]() {return RadixSort(&(vec[0]), sz, SomeClass::getKey);};
+   const auto std_call = [&vec_ok](){std::sort(vec_ok.begin(), vec_ok.end());};
+   const auto check_call = [&vec, &vec_ok, sz]() { check(vec.begin(), vec_ok.begin(), sz); };
 
    TestImpl(vec.begin(), vec_ok.begin(), sz, create_entry, radix_call, std_call, check_call);
 }
 
 int main()
 {
-   const unsigned int sz = 10000000;
+   const unsigned int sz = 100000;
 
    srand(time(0));
 
    TestArrIntegralTypeAllocHere<size_t>(SIZE_MAX, sz, false);
    TestArrIntegralType<int>(INT_MAX, sz, false, true);
-    TestArrIntegralType<int>(INT_MAX, sz, true);
+   TestArrIntegralType<int>(INT_MAX, sz, true);
    TestArrIntegralType<int>(INT_MAX, sz - 1, false);
    TestArrIntegralType<int>(INT_MAX, sz, false);
    TestArrIntegralType<int>(INT_MAX, sz, false);
