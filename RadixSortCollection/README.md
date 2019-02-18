@@ -1,5 +1,4 @@
-C++17 radix sort functions for array, std::list and std::vector,  
-for integral/user defined types.  
+C++17 radix sort for array, std::list and std::vector. Integral/user defined types.  
 -------------------------------------------------------------------------------------------------
 
 When to use?
