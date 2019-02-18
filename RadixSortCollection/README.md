@@ -1,9 +1,9 @@
 C++17 radix sort functions for array and for std::list.  
 -------------------------------------------------------------------------------------------
 
-**When to use?
+***When to use?
 - When your type is indexable, but non-comparable.
-- For an even faster execution than std::sort when sorting integral types.**  
+- For an even faster execution than std::sort when sorting integral types.***
 
 *See test.cpp for running examples.*
 
