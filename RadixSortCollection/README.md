@@ -5,13 +5,16 @@ When to use?
 - When your type is indexable, but non-comparable.
 - For an even faster execution than std::sort when sorting integral types.
 
-*See test.cpp for running examples.*
+Included fines:
+- radix_sort_api.h : api for the client to use
+- radix_sort_internal.h : implementation of the api
+- test.cpp: running examples
 
 Notes:  
-  - Requires a C++17 compiler.
-  - Make sure the type has a move cctor and a move copy assignment, to prevent cctors/copy assignments during the sort.  
-  - Provide usable_memory if you don't want radix to allocate memory dynamically. 
-    See details about the usable memory size in the API (radix_sort_collection_api.h).  
+- Requires a C++17 compiler.
+- Make sure the type has a move cctor and a move copy assignment, to prevent cctors/copy assignments during the sort.  
+- Provide usable_memory if you don't want radix to allocate memory dynamically. 
+  See details about the usable memory size in the API (radix_sort_collection_api.h).  
 
 Following are the different usages for the RadixSort functions:
 ---------------------------------------------------------------
