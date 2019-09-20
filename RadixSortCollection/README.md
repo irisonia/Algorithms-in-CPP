@@ -15,6 +15,7 @@ Notes:
 - You can provide memory for the algorythm to use, instead of radix allocating it dynamically. 
   See details about the memory size in the API (radix_sort_collection_api.h).  
 - The underlying sort is radix. 
+- For sorting std::vector, send the address of its first element.
 
 Included files:
 - radix_sort_api.h : api for the client to use
