@@ -1,6 +1,6 @@
-A collection of very time efficient sorts for large collections of integral/indexable types, 
+A collection of time efficient sorts for large collections of integral types and any indexable T type, 
 allowing you to:
--------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------
 - Sort std::list, std::vector and arrays of integral types and any indexable type, very quickly.
 - Get a sorted 'view' of an array, by getting a sorted verstion of the indexes of the elements, without actually changing the array.
   Useful for holding several sorted versions of the same array at the same time, each by a different sort critiria.</br>
