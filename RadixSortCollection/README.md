@@ -4,8 +4,8 @@ allowing you to:
 - Sort std::list, std::vector and arrays of integral types and any indexable type, very quickly.
 - Get a sorted 'view' of an array, by getting a sorted verstion of the indexes of the elements, without actually changing the array.
   Useful for holding several sorted versions of the same array at the same time, each by a different sort critiria.</br>
-  Having only the indexes sorted is extremely time efficient, because even the single copying of the elements that occures in the
-  regular sort, needs not be done.</br>
+  Having only the indexes sorted is extremely time efficient, because the copying of the elements that occures at the end of
+  the regular sort, needs not be done.</br>
   Note: The sorted indexes are invalidated with any change to the original array, therefore make sure to sort again after
   any change. No worries, it will sort again very quickly.  
   
