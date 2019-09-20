@@ -11,7 +11,7 @@ allowing you to:
   
 Notes:
 - Requires a C++17 compiler.
-- Make sure the type has a move cctor and a move copy assignment, to prevent cctors/copy assignments during the sort.  
+- Make sure type T has a move ctor and a move copy assignment.  
 - You can provide memory for the algorythm to use, instead of radix allocating it dynamically. 
   See details about the memory size in the API (radix_sort_collection_api.h).  
 - The underlying sort is radix. 
