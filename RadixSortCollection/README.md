@@ -27,7 +27,7 @@ Design considerations:
 - Clear and simple
 
 
-Following are the different usages for the RadixSort functions:
+Usages examples:
 ---------------------------------------------------------------
 
 - Sort a consecutive array of any integral type:  
