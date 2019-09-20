@@ -1,6 +1,6 @@
-A collection of time efficient sorts for large collections of integral types and any indexable T type, 
+A collection of time efficient radix sorts for large collections of integral types and any indexable T type, 
 allowing you to:
-------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 - Sort std::list, std::vector and arrays of integral types and any indexable type, very quickly.
 - Get a sorted 'view' of an array, by getting a sorted verstion of the indexes of the elements, without actually changing the array.
   Useful for holding several sorted versions of the same array at the same time, each by a different sort critiria.</br>
@@ -12,9 +12,8 @@ allowing you to:
 Notes:
 - Requires a C++17 compiler.
 - Make sure type T has a move ctor and a move copy assignment.  
-- You can provide memory for the algorythm to use, instead of radix allocating it dynamically. 
-  See details about the memory size in the API (radix_sort_collection_api.h).  
-- The underlying sort is radix. 
+- You can provide memory for the algorythm to use, instead of radix allocating it dynamically.</br>
+  See details about the memory size in the API (radix_sort_collection_api.h).   
 - For sorting std::vector, send the address of its first element.
 
 Included files:
