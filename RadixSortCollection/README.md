@@ -20,10 +20,8 @@ Included files:
 - test.cpp: running examples
 
 Design considerations:
-- Unify the logic as much as possible for all the sorts in this collection, divert only when necessary.
-- Time efficiency (minimum copying, etc)
-- Clear and simple
-
+- Time efficiency (minimum copying, etc).
+- Write as unified as possible logic for all the sorting options, for clarity and readability.
 
 Usages examples:
 ---------------------------------------------------------------
