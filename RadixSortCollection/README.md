@@ -1,4 +1,4 @@
-Quickly sort or gat a sorted view of large lists / arrays of any indexable type.</br>
+Quickly sort or get a sorted view of large lists / arrays of any index-able type.</br>
 Allowing the following features:
 ------------------------------------------------------------------------------------------------------------
 - Sort std::list, std::vector and arrays of any indexable type, very quickly.
