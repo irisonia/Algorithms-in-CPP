@@ -1,10 +1,9 @@
-A collection of time efficient radix sorts for large collections of integral types and any indexable T type, 
-allowing you to:
+Time efficient radix sorts and sorted views for large lists/arrays of any indexable type. 
+Allowing the following options:
 ------------------------------------------------------------------------------------------------------------
-- Sort std::list, std::vector and arrays of integral types and any indexable type, very quickly.
-- Get a sorted 'view' of an array, by getting a sorted verstion of the indexes of the elements, without actually changing the array.
+- Sort std::list, std::vector and arrays of any indexable type, very quickly.
+- Get a sorted 'view' of an array, by getting a sorted verstion of the indexes of the elements, keeping the original array unchanged.
   Useful for holding several sorted versions of the same array at the same time, each by a different sort critiria.</br>
-  Having only the indexes sorted is even more time efficient.</br>
   Note: The sorted indexes are invalidated with any change to the original array, therefore make sure to sort again after
   any change. No worries, it will sort again very quickly.  
   
