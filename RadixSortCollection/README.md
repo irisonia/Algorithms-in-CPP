@@ -1,5 +1,5 @@
-Time efficient radix sorts and sorted views for large lists/arrays of any indexable type. 
-Allowing the following options:
+Time efficient radix sorts and sorted views for large lists/arrays of any indexable type.</br>
+Allowing the following features:
 ------------------------------------------------------------------------------------------------------------
 - Sort std::list, std::vector and arrays of any indexable type, very quickly.
 - Get a sorted 'view' of an array, by getting a sorted verstion of the indexes of the elements, keeping the original array unchanged.
