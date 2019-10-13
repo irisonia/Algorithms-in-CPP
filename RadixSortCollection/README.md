@@ -30,15 +30,15 @@ Usages examples:
   *RadixSort(arr, arr_size);  
   RadixSort(arr, arr_size, usable_memory);*
 
-- Sort a consecutive array of any type T, that can be represented as an unsigned integral type.  
+- Sort a consecutive array of any indexable type T.  
   *RadixSort(arr, size, type_to_unsigned_func);  
   RadixSort(arr, size, type_to_unsigned_func, usable_memory1, usable_memory2);*
 
-- Get a sorted view of a consecutive array of any type T, that can be represented as an unsigned integral type.  
+- Get a sorted view of a consecutive array of any indexable type T.  
   *RadixSortIndexesOnly(arr, size, type_to_unsigned_func, output_arr);  
   RadixSortIndexesOnly(arr, size, type_to_unsigned_func, output_arr, usable_memory1, usable_memory2);*
 
-- Sort a std::list of any type T, that can be represented as an unsigned integral type.  
+- Sort a std::list of any indexable type T.  
   *RadixSort(lst, type_to_unsigned_func);  
   RadixSort(lst, type_to_unsigned_func, usable_memory1, usable_memory2)*
   
