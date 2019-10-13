@@ -10,7 +10,7 @@ Allowing the following features:
 Notes:
 - Requires a C++17 compiler.
 - Make sure type T has a move ctor and a move copy assignment.  
-- You can provide memory for the algorythm to use, instead of radix allocating it dynamically.</br>
+- You can provide memory for the algorithm to use, instead of radix allocating it dynamically.</br>
   See details about the memory size in the API (radix_sort_collection_api.h).   
 - For sorting std::vector, send the address of its first element.
 
